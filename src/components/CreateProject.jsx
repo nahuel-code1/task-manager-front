@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from "react";
 import api from '../api';
+import { UserContext } from "../UserContext";
 import { Form, Button, Card } from 'react-bootstrap';
 
 const CreateProject = () => {
+  const { userId } = useContext(UserContext);
+
   const [project, setProject] = useState({
     name: '',
-    userId: ''
+    userId: userId
   });
 
   const handleChange = (e) => {
@@ -16,7 +19,6 @@ const CreateProject = () => {
     e.preventDefault();
     try {
       const response = await api.post('/taskManager/create/project', project);
-      console.log(response.data);
     } catch (error) {
       console.error('Error creating project', error);
     }
@@ -29,10 +31,6 @@ const CreateProject = () => {
         <Form.Group controlId="name">
           <Form.Label>Project Name</Form.Label>
           <Form.Control type="text" name="name" onChange={handleChange} required />
-        </Form.Group>
-        <Form.Group controlId="userId">
-          <Form.Label>User ID</Form.Label>
-          <Form.Control type="text" name="userId" onChange={handleChange} required />
         </Form.Group>
         <Button variant="primary" type="submit" className="mt-3">Create Project</Button>
       </Form>

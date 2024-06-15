@@ -1,27 +1,60 @@
-// src/components/Layout.js
-import React from 'react';
-import { Container, Navbar, Nav } from 'react-bootstrap';
+import React from "react";
+import { Outlet, Link } from "react-router-dom";
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
-    <div>
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <Container>
-          <Navbar.Brand href="/">Task Manager</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-                <Nav.Link href="/login">Login</Nav.Link>
-                <Nav.Link href="/register">Register</Nav.Link>
-              <Nav.Link href="/projects">Projects</Nav.Link>
-              <Nav.Link href="/tasks">Tasks</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      <Container className="mt-4">
-        {children}
-      </Container>
+    <div className="min-h-screen flex flex-col bg-gray-100">
+      <header className="bg-blue-900 text-white shadow-lg">
+        <div className="container mx-auto p-4">
+          <h1 className="text-3xl font-bold">Task Manager</h1>
+        </div>
+      </header>
+      <nav className="bg-white shadow">
+        <div className="container mx-auto p-4 flex space-x-4">
+          <Link
+            to="/app/create-project"
+            className="text-blue-600 hover:text-blue-800 transition duration-300"
+            style={{ textDecoration: "none" }}
+          >
+            Create Project
+          </Link>
+          <Link
+            to="/app/create-task"
+            className="text-blue-600 hover:text-blue-800 transition duration-300"
+            style={{ textDecoration: "none" }}
+          >
+            Create Task
+          </Link>
+          <Link
+            to="/app/projects"
+            className="text-blue-600 hover:text-blue-800 transition duration-300"
+            style={{ textDecoration: "none" }}
+          >
+            Project List
+          </Link>
+          <Link
+            to="/app/tasks"
+            className="text-blue-600 hover:text-blue-800 transition duration-300"
+            style={{ textDecoration: "none" }}
+          >
+            Task List
+          </Link>
+        </div>
+      </nav>
+      <main className="flex-grow container mx-auto p-4">
+        <div className="bg-white rounded-lg p-4 shadow-md mb-4">
+          <h2 className="text-lg font-semibold mb-2">Welcome to Task Manager!</h2>
+          <p className="text-gray-600">
+            Here you can manage your projects and tasks efficiently. Click on the links above to get started.
+          </p>
+        </div>
+        <Outlet />
+      </main>
+      <footer className="bg-blue-900 text-white mt-4">
+        <div className="container mx-auto p-4 text-center">
+          <p>&copy; 2024 Task Manager. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 };
