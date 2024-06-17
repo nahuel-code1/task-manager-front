@@ -26,6 +26,20 @@ const Layout = () => {
             Create Task
           </Link>
           <Link
+            to="/app/delete-task"
+            className="text-blue-600 hover:text-blue-800 transition duration-300"
+            style={{ textDecoration: "none" }}
+          >
+            Delete Task
+          </Link>
+          <Link
+            to="/app/update-task"
+            className="text-blue-600 hover:text-blue-800 transition duration-300"
+            style={{ textDecoration: "none" }}
+          >
+            Update Task
+          </Link>
+          <Link
             to="/app/projects"
             className="text-blue-600 hover:text-blue-800 transition duration-300"
             style={{ textDecoration: "none" }}

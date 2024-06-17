@@ -12,6 +12,7 @@ const ProjectList = () => {
     const fetchProjects = async () => {
       try {
         const response = await api.post('/taskManager/project/task', { id: userId });
+        console.log(response.data);
         setProjects(response.data);
       } catch (error) {
         console.error('Error fetching projects', error);
